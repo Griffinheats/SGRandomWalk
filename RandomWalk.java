@@ -6,8 +6,7 @@ public class RandomWalk
         int deltaX = step();
         int deltaY = step();
         int steps = 0;
-        int distanceX = 0;
-        int distanceY = 0;
+        int distance = 0;
 
         Line t = new Line(50, 50, 250, 50);
         Line t1 = new Line(50, 50, 50, 250);
@@ -30,20 +29,16 @@ public class RandomWalk
         t2.draw();
         t3.draw();
 
-        while(((int)Math.sqrt(Math.pow((double)distanceX, 2) + Math.pow((double)distanceY, 2)) != 100) && (escape.getX() > circle.getX() && escape.getY() > circle.getY() && escape.getX() < 250 && escape.getY() < 250))
+        while(distance < 100)
         {
-            System.out.println("" + (int)Math.sqrt(Math.pow((double)distanceX, 2) + Math.pow((double)distanceY, 2)));
             escape.translate(deltaX, deltaY);
+            distance = (int)(Math.abs((Math.sqrt(Math.pow(deltaX, 2) + Math.pow(deltaY, 2)))));
             steps += 1;
             deltaX = step();
             deltaY = step();
-            distanceX += deltaX;
-            distanceY += deltaY;
             try { Thread.sleep(50);} catch(Exception ex) {};
         }
-        System.out.println("" + (int)Math.sqrt(Math.pow((double)distanceX, 2) + Math.pow((double)distanceY, 2)));
         System.out.println("Escaped in " + steps + " steps");
-        System.out.println("" + (int)Math.sqrt(Math.pow((double)distanceX, 2) + Math.pow((double)distanceY, 2)));
         
 
     }
