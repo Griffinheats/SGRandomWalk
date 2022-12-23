@@ -8,11 +8,6 @@ public class RandomWalk
         int steps = 0;
         int distance = 0;
 
-        Line t = new Line(50, 50, 250, 50);
-        Line t1 = new Line(50, 50, 50, 250);
-        Line t2 = new Line(250, 50, 250, 250);
-        Line t3 = new Line(50, 250, 250, 250);
-
         Rectangle bg = new Rectangle(0, 0, 300, 300);
         bg.setColor(Color.BLUE);
         Ellipse circle = new Ellipse(50, 50, 200, 200);
@@ -24,19 +19,14 @@ public class RandomWalk
         circle.draw();
         escape.draw();
         escape.fill();
-        t.draw();
-        t1.draw();
-        t2.draw();
-        t3.draw();
-
         while(distance < 100)
         {
+            distance = (int)(Math.abs(Math.sqrt(Math.pow(escape.getX()-150, 2) + Math.pow(escape.getY()-150, 2))));
             escape.translate(deltaX, deltaY);
-            distance = (int)(Math.abs((Math.sqrt(Math.pow(deltaX, 2) + Math.pow(deltaY, 2)))));
             steps += 1;
             deltaX = step();
             deltaY = step();
-            try { Thread.sleep(50);} catch(Exception ex) {};
+            try { Thread.sleep(100);} catch(Exception ex) {};
         }
         System.out.println("Escaped in " + steps + " steps");
         
